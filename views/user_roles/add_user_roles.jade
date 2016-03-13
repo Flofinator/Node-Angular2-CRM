@@ -1,0 +1,26 @@
+include ../includes/header.jade
+div.page-data
+
+	form(method="post" action="/user_roles/add/")
+
+		table(cellpadding="11")
+		tr
+			td(class="label") UserName 
+				select(id="user-select" name="user_select")
+					each val in data
+						if (val.TYPE === 'U')
+							option(value ="#{val.USER_ID}") #{val.VALUE}
+
+			br
+			br
+			td(class="label") Role Name 
+				select(id="role-select" name="role_select")
+					each val in data
+						if(val.TYPE === 'R')
+							option(value ="#{val.USER_ID}") #{val.VALUE}
+
+			br
+			br
+			td(class="label")
+				input(type="submit" name="submit" value="Save")
+				input(type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelAddUser()")

@@ -1,0 +1,56 @@
+<div class="page-data">
+	<form #f="ngForm" (ngSubmit)="submitRoleEditForm()">
+
+		<table cellpadding="11">
+            <tr>
+                <div class="label"> Role Name </div>
+                    <input type="text" [value]="role?.ROLE_NAME" [(ngModel)]="role_submit.ROLE_NAME">
+                <br>
+                <br>
+                <div class="label"> Description</div>
+                    <input type="text" [value]="role?.DESCRIPTION" [(ngModel)]="role_submit.DESCRIPTION">
+
+                <br>
+                <br>
+
+                <div class="label"> Active Record </div>
+                    <input type="checkbox"
+                          [ngModel]="role?.ACTIVE_FLAG === 'Y' ? true : false"
+                          (ngModelChange)="toggleRoleActive()" checked>
+
+                <br>
+                <br>
+            </tr>
+		</table>
+
+        <div class="label"> Active Modules</div>
+		<select id="modules_applied" [(ngModel)]="module_selected" (change)="gettingActiveModule($event.target.value)">
+			<option *ngFor="#module of modules" value = "{{module?.MODULE_NAME}}">{{module?.MODULE_NAME}}</option>
+		</select>
+
+
+		<div class="data-table">
+            <br>
+            <br>
+			    <role_modules [module]="active_module"></role_modules>
+
+			<br>
+			<br>
+
+		</div>
+		<div class="label"> Inactive Modules </div>
+		<select id="new_mods_select" [(ngModel)]="new_module_selected" (change)="gettingActiveNewModule($event.target.value)">
+            <option *ngFor="#new_module of new_modules" value = "{{new_module?.MODULE_NAME}}">{{new_module?.MODULE_NAME}}</option>
+		</select>
+
+		<div class="data-table">
+            <br>
+            <br>
+			<new_role_modules [new_module] ="active_new_module"></new_role_modules>
+
+			<br>
+			<br>
+		</div>
+		<input type="submit" name="submit" value="Save">
+    </form>
+</div>

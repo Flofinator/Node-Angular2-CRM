@@ -1,0 +1,7 @@
+config.json
+node_modules/
+client/node_modules/
+npm-debug.log
+
+#IntelliJ IDE Directory-based project format:
+.idea

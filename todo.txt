@@ -1,0 +1,20 @@
+//TODO's
+
+
+//Immediate breaking changes
+
+-None
+
+//Things that need to be done but are not urgent
+
+-Need to refactor out all the headers to be able to send them without having to specify it for every single method
+-Need to add stores for items with lots of data to send to the server
+-Need to refactor toggles to be rule based to work with changing rules.
+-Need to change how menus work to be dynamically loaded
+-Certain files have multiple classes in the same file, try and separate them out to be cleaner/easier to read
+-Add security headers
+-Need to add heartbeat/refresh of tokens
+-Need to make node_modules one folder for both front-end and back-end so I only have to do npm install once.
+
+
+

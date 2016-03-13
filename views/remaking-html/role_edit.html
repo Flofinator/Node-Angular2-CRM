@@ -1,0 +1,137 @@
+<div class="page-data">
+	<form method="post" action="/roles/edit/"+data[0].ID+"" name=""+data[0].ID+"">
+
+		<table cellpadding="11">
+		<tr>
+			<br>
+			<br>
+			<div class="label"> Role Name </div>
+				<input type="text" name="role_name" value='#{data[0].ROLE_NAME}'>
+			<br>
+			<br>
+			<div class="label"> Description</div> 
+				<input type="text" name="description" value='#{data[0].DESCRIPTION}'>
+			<br>
+			<br>
+			<div class="label"> Active Record </div>
+				if data[0].ACTIVE_FLAG === 'Y'
+					<input type="radio" name="active_flag" value="Y" checked> Active</input>
+					<input type="radio" name="active_flag" value="N"> Inactive</input>
+				if data[0].ACTIVE_FLAG === 'N'
+					<input type="radio" name="active_flag" value = "Y"> Active</input>
+					<input type="radio" name="active_flag" value= "N" checked> Inactive</input>		
+			<br>
+			<br>
+		</table>	
+	
+		<div class="label"> Active Modules</div>
+		<select id="modules_applied" name="module_name">
+			<option value="none"> None</option>
+			each val in modules
+				option(value="#{val.MODULE_NAME}") #{val.MODULE_NAME}
+		</select>		
+
+		<div class="data-table">
+
+			<table id="modules_table" border="1" cellpadding="7" cellspacing="7"></table>
+
+			<br>
+			<br>
+
+		</div>
+		<div class="label"> Inactive Modules </div>
+		<select id="new_mods_select" name="new_modules">
+			<option value="none"> None</option>
+			each val in new_modules
+				option(value="#{val.MODULE_NAME}") #{val.MODULE_NAME}
+		</select>
+		<div class="data-table">
+
+			<table id="new_modules_table" border="1" cellpadding="7" cellspacing="7"></table>
+			
+			<br>
+			<br>
+		</div>
+		input(type="submit" name="submit" value="Save")
+		input(type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelAddRole()")
+	</form>	
+</div>
+		<script>
+			$('select[id="modules_applied"]').change(function(){
+				
+				var myNode = document.getElementById("modules_table");
+				while (myNode.firstChild){
+					myNode.removeChild(myNode.firstChild);
+				}
+
+				var $module_name = $(this).val();
+				var $user_id = $('form').attr('name')
+
+
+				$.ajax({
+					type:"POST",
+					url: '/roles/applied_role_modules/'+$user_id,
+					data: { module_name : $module_name}
+				}).done(function(data){
+					var module_table = '<tr><th width = "20%"> Module Name </th> <th width = "20%"> Insert </th> <th width = "20%"> Update </th> <th width = "20%"> Delete </th> <th width = "20%"> Query </th></tr> <tr><td><div id="active_module_id" value="' + data.data[0].NAME + '"</div>' + data.data[0].NAME + '</td><td> <input type="hidden" name="active_module" value="' + data.data[0].NAME + '">';
+					console.log(data);
+					if(data.data[0].INSERT_ALLOWED_FLAG === 'Y'){
+						module_table += '<input type="radio" name="insert_flag" value="Y" checked> Yes </input> <input type="radio" name="insert_flag" value= "N"> No </input> </td><td>';
+					}else{
+						module_table += '<input type="radio" name="insert_flag" value="Y"> Yes </input> <input type="radio" name="insert_flag" value= "N" checked> No </input> </td><td>';
+					}
+					if(data.data[0].UPDATE_ALLOWED_FLAG === 'Y'){
+						module_table += '<input type="radio" name="update_flag" value="Y" checked> Yes </input> <input type="radio" name="update_flag" value= "N"> No </input> </td><td>';
+					}else{
+						module_table += '<input type="radio" name="update_flag" value="Y"> Yes </input> <input type="radio" name="update_flag" value= "N" checked> No </input> </td><td>';
+					}
+					if(data.data[0].DELETE_ALLOWED_FLAG === 'Y'){
+						module_table += '<input type="radio" name="delete_flag" value="Y" checked> Yes </input> <input type="radio" name="delete_flag" value= "N"> No </input> </td><td>';
+					}else{
+						module_table += '<input type="radio" name="delete_flag" value="Y"> Yes </input> <input type="radio" name="delete_flag" value= "N" checked> No </input> </td><td>';
+					}
+					if(data.data[0].QUERY_ONLY === 'Y'){
+						module_table += '<input type="radio" name="query_flag" value="Y" checked> Yes </input> <input type="radio" name="query_flag" value= "N"> No </input> </td><td>';
+					}else{
+						module_table += '<input type="radio" name="query_flag" value="Y"> Yes </input> <input type="radio" name="query_flag" value= "N" checked> No </input> </td><td>';
+					}
+					$('#modules_table').append(module_table);
+
+				});
+
+			});
+		</script>
+
+		<script>
+			$('select[id="new_mods_select"]').change(function(){
+				
+				var myNode = document.getElementById("new_modules_table");
+				while (myNode.firstChild){
+					myNode.removeChild(myNode.firstChild);
+				}
+
+				var $module_name = $(this).val();
+				var $user_id = $('form').attr('name')
+
+
+				$.ajax({
+					type:"POST",
+					url: '/roles/new_role_modules/'+$user_id,
+					data: { module_name : $module_name}
+				}).done(function(data){
+					var module_table = '<tr><th width = "20%"> Module Name </th> <th width = "20%"> Insert </th> <th width = "20%"> Update </th> <th width = "20%"> Delete </th> <th width = "20%"> Query </th></tr> <tr><td><div class=' + data.data[0].NAME + '</div>' + data.data[0].NAME + '</td><td> <input type="hidden" name="new_module" value="' + data.data[0].NAME + '">';
+					console.log(data);
+					module_table += '<input type="radio" name="insert_flag_new" value="Y"> Yes </input> <input type="radio" name="insert_flag_new" value= "N" checked> No </input> </td><td>';
+				
+					module_table += '<input type="radio" name="update_flag_new" value="Y"> Yes </input> <input type="radio" name="update_flag_new" value= "N" checked> No </input> </td><td>';
+
+					module_table += '<input type="radio" name="delete_flag_new" value="Y"> Yes </input> <input type="radio" name="delete_flag_new" value= "N" checked> No </input> </td><td>';
+
+					module_table += '<input type="radio" name="query_flag_new" value="Y"> Yes </input> <input type="radio" name="query_flag_new" value= "N" checked> No </input> </td><td>';
+
+					$('#new_modules_table').append(module_table);
+
+				});
+
+			});
+			</script>

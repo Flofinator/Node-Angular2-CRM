@@ -1,0 +1,36 @@
+include ../includes/header.jade
+div.page-data
+    
+    div.data-btn
+        
+        button(onClick="addUSerRole();") + Add
+    
+    div.data-table
+
+        table(border="1" cellpadding="7" cellspacing="7")
+
+            tr
+                th(style='width: ' + (35) + '%') UserName
+                th(style='width: ' + (35) + '%') Role
+                th(style='width: ' + (15) +  '%') Active
+                th(style='width: ' + 120 + 'px') Action
+
+            each val in data
+                tr
+                    td= val.USERNAME
+                    td= val.ROLE_NAME
+                    td
+                        if val.ACTIVE_FLAG === 'Y'
+                            <input type="checkbox" name="active_record" value="active" disabled readonly checked> Active<br>
+                            <input type="checkbox" name="inactive_record" value="inactive" disabled readonly> Inactive<br>
+                        else if val.ACTIVE_FLAG === 'N'
+                            <input type="checkbox" name="active_record" value="active" disabled readonly> Active<br>
+                            <input type="checkbox" name="inactive_record" value="inactive" disabled readonly checked> Inactive<br>
+
+                    td
+                        a(class="a-inside edit" href="../user_roles/reactivate/"+val.USER_ID+"/"+val.ROLE_ID) Reactivate
+                        a(class="a-inside delete" href="../user_roles/delete/"+val.USER_ID+"/"+val.ROLE_ID) Delete
+
+    form(method="get" action="/user_roles/search/"+data[0].ID)
+        input(type="text" name="search" placeholder="Search")
+        input(type="submit" name="submit" value="Search")

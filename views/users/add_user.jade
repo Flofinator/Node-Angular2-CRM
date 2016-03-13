@@ -1,0 +1,16 @@
+include ../includes/header.jade
+div.page-data
+
+	form(method="post" action="/users/add/")
+
+		table(cellpadding="11")
+		tr
+			td(class="label") UserName 
+				input(type="text" name="username")
+			
+			td(class="label") Password 
+				input(type="text" name="password")
+
+			td(class="label")
+				input(type="submit" name="submit" value="Save")
+				input(type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelAddUser()")

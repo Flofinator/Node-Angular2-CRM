@@ -1,0 +1,22 @@
+include ../includes/header.jade
+div.page-data
+    
+    div.data-table
+
+        table(border="1" cellpadding="7" cellspacing="7")
+
+            tr
+                th ID
+                th(style='width: ' + (80/2) + '%') UserName
+                th(style='width: ' + (80/2) + '%') Password
+                th(style='width: ' + 120 + 'px') Action
+
+            each val in data
+                tr
+                    td= val.ID
+                    td= val.ROLE_NAME
+                    td= val.DESCRIPTION
+                    td
+                        a(class="a-inside edit" href="../edit/"+val.ID) Edit
+
+                        a(class="a-inside delete" href="../delete/"+val.ID) Delete

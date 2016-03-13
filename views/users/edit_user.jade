@@ -1,0 +1,28 @@
+include ../includes/header.jade
+div.page-data
+
+	form(method="post" action="/users/edit/"+data[0].ID)
+
+		table(cellpadding="11")
+		tr
+			td(class="label") UserName 
+				input(type="text" name="username" value='#{data[0].USERNAME}')
+			br
+			br
+			td(class="label") Password 
+				input(type="text" name="password" value='#{data[0].PASSWORD}')
+
+			br
+			br
+			td(class="label") Active Record 
+				if data[0].ACTIVE_FLAG === 'Y'
+					<input type="radio" name="active_flag" value="Y" checked> Active</input>
+					<input type="radio" name="active_flag" value="N"> Inactive</input>
+				if data[0].ACTIVE_FLAG === 'N'
+					<input type="radio" name="active_flag" value = "Y"> Active</input>
+					<input type="radio" name="active_flag" value="N" checked> Inactive</input>
+			br
+			br
+			td(class="label")
+				input(type="submit" name="submit" value="Save")
+				input(type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelAdd()")

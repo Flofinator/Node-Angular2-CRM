@@ -1,0 +1,55 @@
+include ../includes/header.jade
+div.page-data
+    form(method="post" action="/contacts/edit/" + data[0].ID + "" name="" + data[0].ID + "")
+
+        table(cellpadding="11")
+        tr
+            br
+            br
+            div(class="label") First Name
+                input(type="text" name="first_name" value='#{data[0].FIRST_NAME}')
+
+            br
+            br
+            div(class="label") Last Name
+                input(type="text" name="last_name" value='#{data[0].LAST_NAME}')
+
+            br
+            br
+            div(class="label") Middle Name
+                input(type="text" name="middle_name" value='#{data[0].MIDDLE_NAME}')
+
+            br
+            br
+            div(class="label") Address Line1
+                input(type="text" name="address_line1" value='#{data[0].LINE1}')
+
+            br
+            br
+            div(class="label") Address Line2
+                input(type="text" name="address_line2" value='#{data[0].LINE2}')
+
+            br
+            br
+            div(class="label") City
+                input(type="text" name="city" value='#{data[0].CITY}')
+
+            br
+            br
+            div(class="label") STATE or Province
+                input(type="text" name="state_or_province" value='#{data[0].STATE_OR_PROVINCE}')
+
+            br
+            br
+            div(class="label") Country
+                input(type="text" name="country" value='#{data[0].COUNTRY}')
+
+            br
+            br
+            div(class="label") Postal Code
+                input(type="text" name="postal_code" value='#{data[0].POSTAL_CODE}')
+
+            input(type="hidden" name="address_id" value='#{data[0].ADDRESS_ID}')
+
+        input(type="submit" name="submit" value="Save")
+        input(type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelAddContact()")

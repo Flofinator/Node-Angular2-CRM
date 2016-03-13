@@ -1,0 +1,52 @@
+<html>
+
+  <head>
+    <title>Angular 2 QuickStart</title>
+    <base href="/">
+  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
+    <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+<script src="node_modules/es6-shim/es6-shim.min.js"></script>
+<script src="node_modules/systemjs/dist/system.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script>
+      System.config({
+        packages: {
+          app: {
+            format: 'register',
+            defaultJSExtensions: true
+          },
+         "/angular2-jwt": {
+            "defaultExtension": "js"
+           }
+        },
+        map: {
+            "angular2-jwt": "/node_modules/angular2-jwt/angular2-jwt"
+          }
+      });
+    </script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.js"></script>
+    <script src="node_modules/angular2/bundles/http.min.js"></script>
+    <script src="node_modules/angular2/bundles/router.min.js"></script>
+    <script>
+      System.import('app/boot')
+            .then(null, console.error.bind(console));
+    </script>
+
+
+
+
+</html>

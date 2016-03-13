@@ -1,0 +1,45 @@
+include ../includes/header.jade
+div.page-data
+
+    form(method="post" action="/contacts/add/")
+
+        table(cellpadding="11")
+        tr
+            td(class="label") First Name
+                input(type="text" name="first_name")
+
+            td(class="label") Last Name
+                input(type="text" name="last_name")
+
+            td(class="label") Middle Name
+                input(type="text" name="middle_name")
+
+
+        br
+        tr
+            td(class="label") Address Line 1
+                input(type="text" name="address_line1")
+
+            br
+            td(class="label") Address Line 2
+                input(type="text" name="address_line2")
+
+            br
+            td(class="label") City
+                input(type="text" name="city")
+
+            br
+            td(class="label") State
+                input(type="text" name="state")
+
+            br
+            td(class="label") Postal Code
+                input(type="text" name="postal_code")
+
+            br
+            td(class="label") Country
+                input(type="text" name="country")
+        br
+        br
+        input(type="submit" name="submit" value="Save")
+        input(type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelAddContact()")
