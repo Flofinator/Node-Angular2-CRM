@@ -21,6 +21,10 @@ What I am working on now for future updates:
 
 -Making menu's dynamic based on roles the loggedin user has.
 
+-Adding of many comments, I will use ESDoc to build out a Wiki
+
+-Going to build unit tests, although this should be done sooner than later this is on the backburner until I fix the bullet points previous to this.
+
 #This Repository is Under the GPL
 
 I am more than happy to give this out for free to anyone who would like to use it, but if you have additions or changes to make please contribute!
