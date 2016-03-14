@@ -21,6 +21,12 @@ What I am working on now for future updates:
 
 -Making menu's dynamic based on roles the loggedin user has.
 
+-Add Encryption across the board.  Currently passwords saved, and JWT are not encrypted.  Looking into bcrypt and some of the other libraries, as this is a work in progress and no one is actively using it I am going to wait a little longer before I saddle down and pick an encryption algorithm to do this.
+
+-Add security header files on API passes on Client
+
+-Sanitize data on the backend for user inputs
+
 -Adding of many comments, I will use ESDoc to build out a Wiki
 
 -Going to build unit tests, although this should be done sooner than later this is on the backburner until I fix the bullet points previous to this.
@@ -38,3 +44,5 @@ Also hopefully this can be a decent reference to anyone struggling to understand
 -MVC architecture, my Models are all of the files in the 'modules' directory.
 
 -How to build/use REST calls between Angular2 and NodeJS
+
+-How to manage JWT's, I currently use localStorage and have not put a heartbeat to auto-renew tokens yet.  Also remember localStorage can open you up to XSS attacks, luckily Angular2 has a lot of protection baked in.
